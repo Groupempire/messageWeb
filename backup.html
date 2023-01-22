@@ -1,0 +1,89 @@
+<html>
+  <head>
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+      Chat with community 
+    </title>
+  </head>
+  <body>
+       <style>
+            
+          .but a{text-align:center;
+           margin-left:20%;
+           text-decoration:none;
+           background:blue;
+           color:white;
+           } 
+           body{background: black;
+           ;
+           
+           
+ margin-left:15px          ;}
+           
+           } 
+           /*.fl{
+                display:inline;
+               // float:left;
+           } 
+          .fl .flo{
+                float:left;
+           } */
+       </style><form>
+            <div class="fl"> 
+                 <div class="flo">
+       <div class="but">
+    <a href="index.html">Home📥</a>
+    <a href="message.html">Message📤</a>
+    
+   
+    
+    </div>
+    <br>
+    <div id="content"></div>
+    </div>
+    <div class="flo">
+    <script>
+      const sheet_id = "1BiIHyD8vzjFOvz4HVABCxl8RC8maF3J2LcOXssLJ5Eg";
+      fetch(`https://docs.google.com/spreadsheets/d/${sheet_id}/export?format=tsv`).
+        then(response => response.text()).
+          then(txt => {
+            const sheet = txt.split("\r\n").map(r => r.split('\t'));
+            let html = "";
+            for (let i = sheet.length-1; i>0; i--) {
+              html += `
+              <style>p{color:red;} 
+              h3{display:inline;}
+              .box p{
+              padding-right:25px;
+                   text-align:left; 
+              }
+      .box  h3{text-align::left;
+      
+      //margin-left:50%;
+      }
+      .box span{
+           font-size:6px;
+           
+      }
+              </style>
+         <div style="color:white;" class="box">
+                <h3>${sheet[i][1]}</h3>
+                  
+  <!-- <small>${sheet[i][0]}</small> -->
+     <span>( ${sheet[i][0]} )</span>
+                  
+              <p>${sheet[i][2]}</p>
+              </div>
+           
+              <hr>
+              
+              
+              `;
+            }
+            document.querySelector("div#content").innerHTML = html;
+      });
+    </script>
+    
+    </div></div>
+  </body>
+</html>

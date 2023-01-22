@@ -1,0 +1,34 @@
+<html>
+  <head><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+      Blog | New Entry
+    </title>
+  </head>
+  <body>
+    <a href="index.html">Home</a>
+    <a href="new.html">New Entry</a>
+    <br>
+    <input id="inp_name" placeholder="Name"/>
+    <br>
+    <textarea id="inp_body" rows="24" cols="80"></textarea>
+    <br>
+    <button id="btn_submit">Submit</button>
+    <script>
+      document.querySelector("button#btn_submit").addEventListener("click", () => {
+        let inp_name = document.querySelector("input#inp_name").value;
+        let inp_body = document.querySelector("textarea#inp_body").value.replaceAll("\t", "    ");
+        fetch("https://docs.google.com/forms/d/18y40dda228Dnz82QVUPeHteOF5c43pVXddEZn3z0xf0/same", {
+          "headers": {
+            "content-type": "application/x-www-form-urlencoded",
+          },
+          "body": `entry.246648158=${inp_name}&entry.889207615=${inp_body}`,
+          "mode" : "no-cors",
+          "method": "POST",
+        }).then(_ => location.href="index.html");
+      });
+      
+      
+     
+    </script>
+  </body>
+</html>
